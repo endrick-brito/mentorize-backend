@@ -29,6 +29,11 @@ public class InstrutorService {
         return instrutorRepository.findByEmail(email).orElse(null);
     }
 
+    /* insertNew */
+    public Instrutor insertNew(Instrutor instrutorInserido){
+        return instrutorRepository.save(instrutorInserido);
+    }
+
     /* update */
     public Instrutor update(Long id, Instrutor instrutorInserido){
         Instrutor instrutorAlterado = findById(id);
