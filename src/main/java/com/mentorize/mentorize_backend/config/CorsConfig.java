@@ -13,8 +13,8 @@ public class CorsConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/api/**") // Aplica CORS para as APIs
-                        .allowedOrigins("http://localhost:3000") // Permite o React acessar
+                registry.addMapping("/**") // Aplica CORS para as APIs
+                        .allowedOrigins("http://localhost:5173") // Permite o React acessar
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Métodos permitidos
                         .allowedHeaders("*") // Permite qualquer cabeçalho
                         .allowCredentials(true); // Permite credenciais (se necessário)

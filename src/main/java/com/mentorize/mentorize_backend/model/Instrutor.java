@@ -3,11 +3,16 @@ package com.mentorize.mentorize_backend.model;
 import java.time.LocalDate;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Instrutor {
 
     @Id
@@ -27,13 +32,12 @@ public class Instrutor {
     private String senha;
 
     @Column(nullable = false)
-    private LocalDate dataCadastro;
+    private LocalDate dataCadastro = LocalDate.now();
 
     public Instrutor(String nome, String sobrenome, String email, String senha) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.email = email;
         this.senha = new BCryptPasswordEncoder().encode(senha); // Senha criptografada
-        this.dataCadastro = LocalDate.now();
     }
 }
