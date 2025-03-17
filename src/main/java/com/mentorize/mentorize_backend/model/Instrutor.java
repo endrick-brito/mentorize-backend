@@ -34,10 +34,11 @@ public class Instrutor {
     @Column(nullable = false)
     private LocalDate dataCadastro = LocalDate.now();
 
-    public Instrutor(String nome, String sobrenome, String email, String senha) {
-        this.nome = nome;
-        this.sobrenome = sobrenome;
-        this.email = email;
-        this.senha = new BCryptPasswordEncoder().encode(senha); // Senha criptografada
+    @PrePersist
+    @PreUpdate
+    private void criptografarSenha() {
+        if (!this.senha.startsWith("$2a$")) { // Evita recriptografia
+            this.senha = new BCryptPasswordEncoder().encode(this.senha);
+        }
     }
 }
