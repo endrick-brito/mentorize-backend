@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.mentorize.mentorize_backend.enums.UserRole;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -33,6 +35,10 @@ public class Instrutor {
 
     @Column(nullable = false)
     private LocalDate dataCadastro = LocalDate.now();
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private UserRole role = UserRole.ADMIN;
 
     @PrePersist
     @PreUpdate
